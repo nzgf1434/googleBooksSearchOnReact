@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './search-panel.css';
 
 export default class SearchPanel extends React.Component{
@@ -14,8 +13,6 @@ export default class SearchPanel extends React.Component{
 
   searchStart = () => {
     const {onSearchChange} = this.props;
-    // let searchString = e.target.value;
-    // this.setState({text: searchString});
     onSearchChange(this.state.text);
   }
 
@@ -24,7 +21,6 @@ export default class SearchPanel extends React.Component{
     this.setState({text: ""});
     onSearchChange("");
   }
-
 
   render(){
     return (
@@ -45,7 +41,6 @@ export default class SearchPanel extends React.Component{
             Сбросить
           </button>
         </div>
-        
       </div>
     );
   };

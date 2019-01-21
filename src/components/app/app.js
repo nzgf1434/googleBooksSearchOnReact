@@ -20,12 +20,11 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log(`prev: ${prevState.searchText}, now: ${this.state.searchText}`);
-
     if (this.state.searchText && prevState.searchText !== this.state.searchText){
       this.booksService.getSearchResult(this.state.searchText)
       .then((res) => {
-        this.setState(() => {return {itemsBooks: res.items}})
+        this.setState(() => {
+          return {itemsBooks: res.items}})
       })
     }
   }
