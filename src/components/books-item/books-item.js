@@ -5,8 +5,9 @@ import defaults from '../../defaultSettings';
 export default function BooksItem(props) {
 
     const {defaultSmallThumbnail, defaultTitle, defaultAuthor, defaultDate} = defaults;
-    
-    const {title = defaultTitle, author = defaultAuthor, date = defaultDate, picture = defaultSmallThumbnail} = props;
+
+        
+    const {title = defaultTitle, author = defaultAuthor, date = defaultDate, picture = defaultSmallThumbnail, onDetailsClick} = props;
     return (
     <div className="item row align-items-center">
         <div className="col-6">
@@ -17,7 +18,7 @@ export default function BooksItem(props) {
         <div className="col-4">
             <img src={picture} alt=" for book" className="smallThumbnail"/>
         </div>
-        <div className="col-2"><button className="btn btn-primary">...more</button></div>
+        <div className="col-2"><button className="btn btn-primary" onClick={onDetailsClick}>...details</button></div>
     </div>
   )
 }

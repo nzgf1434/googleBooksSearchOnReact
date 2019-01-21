@@ -7,7 +7,7 @@ export default class BooksList extends Component {
 
   render = () => {
 
-    const { list } = this.props;
+    const { list, onDetailsClick } = this.props;
     
     if (list) {
        const elements = list.map((
@@ -19,6 +19,7 @@ export default class BooksList extends Component {
                         author={authors}
                         date={publishedDate}
                         picture={imageLinks.smallThumbnail}
+                        onDetailsClick = {() => onDetailsClick(id)}
                     />
                 </li>
             )

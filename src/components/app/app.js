@@ -3,6 +3,7 @@ import './app.css';
 import BooksList from '../books-list';
 import SearchPanel from "../search-panel";
 import GoogleBooksService from '../../services/GoogleBooksService';
+import DetailBooksItem from '../details-books-item';
 
 
 
@@ -10,13 +11,20 @@ class App extends Component {
 
   state = {
     searchText: '',
-    itemsBooks: null
+    itemsBooks: null, 
+    details: null
   }
   
   booksService = new GoogleBooksService();
 
   onSearchChange = (text) => {
     this.setState({searchText: text});
+  }
+
+  onDetailsClick = (id) => {
+    const currentBook = this.state.itemsBooks.filter((item) => item.id === id);
+    this.setState({details: currentBook[0]});
+    // console.log(this.state.itemsBooks.filter((item)=>item.id === id ));
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -30,11 +38,19 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.searchText){
+    if (this.state.searchText && !this.state.details){
       return (
         <div className="App container">
           <SearchPanel onSearchChange={this.onSearchChange}/>
-          <BooksList list={this.state.itemsBooks}/>
+          <BooksList list={this.state.itemsBooks} onDetailsClick={this.onDetailsClick}/>
+        </div>
+      );
+    }
+    else if (this.state.details){
+      return (
+        <div className="App container">
+          <SearchPanel onSearchChange={this.onSearchChange}/>
+          <DetailBooksItem details={this.state.details}/>
         </div>
       );
     }
