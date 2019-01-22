@@ -4,6 +4,7 @@ import BooksList from '../books-list';
 import SearchPanel from "../search-panel";
 import GoogleBooksService from '../../services/GoogleBooksService';
 import DetailBooksItem from '../details-books-item';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 
@@ -24,7 +25,6 @@ class App extends Component {
   onDetailsClick = (id) => {
     const currentBook = this.state.itemsBooks.filter((item) => item.id === id);
     this.setState({details: currentBook[0]});
-    // console.log(this.state.itemsBooks.filter((item)=>item.id === id ));
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -38,22 +38,37 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.searchText && !this.state.details){
+
+    // if (this.state.searchText && !this.state.details){
+      if (this.state.searchText){
       return (
-        <div className="App container">
-          <SearchPanel onSearchChange={this.onSearchChange}/>
-          <BooksList list={this.state.itemsBooks} onDetailsClick={this.onDetailsClick}/>
-        </div>
+        <Router>
+          <div className="App container">
+            <Route path="/" 
+                    render={() => <SearchPanel onSearchChange={this.onSearchChange}/>} 
+              />
+            <Route path="/list" 
+                  render={() => <BooksList list={this.state.itemsBooks} onDetailsClick={this.onDetailsClick} />} exact
+            />
+            <Route path="/list/:id" 
+                  render={() => <DetailBooksItem details={this.state.details} />}
+                    // const { id } = match.params; itemId={id} 
+                   
+            />
+          </div>
+        </Router>
       );
     }
-    else if (this.state.details){
-      return (
-        <div className="App container">
-          <SearchPanel onSearchChange={this.onSearchChange}/>
-          <DetailBooksItem details={this.state.details}/>
-        </div>
-      );
-    }
+    // else if (this.state.details){
+    //   return (
+    //     <Router>
+    //       <div className="App container">
+    //         <SearchPanel onSearchChange={this.onSearchChange}/>
+            
+    //       </div>
+    //     </Router>
+    //   );
+    // }
     else {
       return (
         <div className="App container">

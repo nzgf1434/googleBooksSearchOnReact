@@ -3,8 +3,10 @@ import './details-books-item.css';
 import defaults from '../../defaultSettings';
 
 export default function DetailsBooksItem(props) {
-    const {defaultThumbnail, defaultTitle, defaultAuthor, defaultDate, defaultPublisher, defaultPageCount, defaultDescription} = defaults;
-    const {details:{volumeInfo: {authors = defaultAuthor, title = defaultTitle, publisher = defaultPublisher, publishedDate = defaultDate, pageCount = defaultPageCount, description = defaultDescription, imageLinks: {thumbnail = defaultThumbnail}}}} = props;
+  
+  const {defaultThumbnail, defaultTitle, defaultAuthor, defaultDate, defaultPublisher, defaultPageCount, defaultDescription} = defaults;
+  const {details:{volumeInfo: {authors = defaultAuthor, title = defaultTitle, publisher = defaultPublisher, publishedDate = defaultDate, pageCount = defaultPageCount, description = defaultDescription, imageLinks: {thumbnail = defaultThumbnail}}}} = props;
+ 
   return (
     <div className="card">
       <img src={thumbnail} alt="for book"/>
@@ -18,4 +20,5 @@ export default function DetailsBooksItem(props) {
       </div>
     </div>
   )
+    
 }

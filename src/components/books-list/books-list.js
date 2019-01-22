@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './books-list.css';
 import BooksItem from '../books-item/';
+import { withRouter } from 'react-router-dom';
 
 
-export default class BooksList extends Component {
+ const BooksList = (props) => {
 
-  render = () => {
-
-    const { list, onDetailsClick } = this.props;
-    
+    const { list, onDetailsClick, history } = props;
+  
     if (list) {
        const elements = list.map((
            {id, volumeInfo: {title, authors, publishedDate, imageLinks = {}}}) => {
@@ -19,7 +18,11 @@ export default class BooksList extends Component {
                         author={authors}
                         date={publishedDate}
                         picture={imageLinks.smallThumbnail}
-                        onDetailsClick = {() => onDetailsClick(id)}
+                        onDetailsClick = {() => {
+                           history.push(`/list/${id}`);
+                           console.log('history.push: ', history);
+                            return onDetailsClick(id)
+                        }}
                     />
                 </li>
             )
@@ -36,5 +39,5 @@ export default class BooksList extends Component {
             </ul>
         )
     }
-  }
-}
+};
+export default withRouter(BooksList);
