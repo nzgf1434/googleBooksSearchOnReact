@@ -1,52 +1,62 @@
-import React from 'react';
-import './search-panel.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from "react";
+import "./search-panel.css";
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
 
-export default class SearchPanel extends React.Component{
-
+class SearchPanel extends React.Component {
   state = {
-    text: ''
-  }
+    text: ""
+  };
 
-  setSearchText = (e) => {
-    this.setState({text: e.target.value})
+  setSearchText = e => {
+    this.setState({ text: e.target.value });
   };
 
   searchStart = () => {
-    const {onSearchChange} = this.props;
+    const { onSearchChange, history } = this.props;
     onSearchChange(this.state.text);
-  }
+    history.push("/list");
+  };
 
   resetSearchResults = () => {
-    const {onSearchChange} = this.props;
-    this.setState({text: ""});
-    onSearchChange("");
-  }
+    const { onResetSearch } = this.props;
+    this.setState({ text: "" });
+    onResetSearch();
+  };
 
-  render(){
+  render() {
+    console.log(this.props.history);
     return (
       <Router>
-      <div className="input-group container">
-        <input type="text"
-                  className="form-control search-input"
-                  placeholder="type to search"
-                  onInput={this.setSearchText} />
-        <div className="input-group-append">
-          <Link
-            to="/list"
-            className="btn btn-outline-primary"
-            onClick={this.searchStart}>
-            Поиск
-          </Link>
-          <button
-            className="btn btn-outline-primary"
-            onClick={this.resetSearchResults}>
-            Сбросить
-          </button>
+        <div className="input-group container">
+          <input
+            type="text"
+            className="form-control search-input"
+            placeholder="type to search"
+            onInput={this.setSearchText}
+            onKeyPress={e => {
+              if (e.key === "Enter") {
+                this.searchStart();
+              }
+            }}
+          />
+          <div className="input-group-append">
+            <button
+              className="btn btn-outline-primary"
+              onClick={this.searchStart}
+            >
+              Поиск
+            </button>
+            <button
+              className="btn btn-outline-primary"
+              onClick={this.resetSearchResults}
+            >
+              Сбросить
+            </button>
+          </div>
         </div>
-      </div>
       </Router>
     );
-  };
-  
-};
+  }
+}
+
+export default withRouter(SearchPanel);

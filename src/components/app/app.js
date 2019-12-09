@@ -19,6 +19,13 @@ class App extends Component {
     this.setState({ searchText: text });
   };
 
+  onResetSearch = () => {
+    this.setState({
+      searchText: "",
+      itemsBooks: null
+    });
+  };
+
   onDetailsClick = id => {
     const currentBook = this.state.itemsBooks.filter(item => item.id === id);
     this.setState({ details: currentBook[0] });
@@ -38,58 +45,40 @@ class App extends Component {
   }
 
   render() {
-    // if (this.state.searchText && !this.state.details){
-    if (this.state.searchText) {
-      return (
-        <Router>
-          <div className="App container">
-            <Route
-              path="/"
-              render={() => (
-                <SearchPanel onSearchChange={this.onSearchChange} />
-              )}
-            />
-            <Route
-              path="/list"
-              render={() => (
-                <BooksList
-                  list={this.state.itemsBooks}
-                  onDetailsClick={this.onDetailsClick}
-                />
-              )}
-              exact
-            />
-            <Route
-              path="/list/:id"
-              render={({ match }) => {
-                // console.log(match);
-                const { id } = match.params;
-                return (
-                  <DetailBooksItem details={this.state.details} itemId={id} />
-                );
-              }}
-            />
-          </div>
-        </Router>
-      );
-    }
-    // else if (this.state.details){
-    //   return (
-    //     <Router>
-    //       <div className="App container">
-    //         <SearchPanel onSearchChange={this.onSearchChange}/>
-
-    //       </div>
-    //     </Router>
-    //   );
-    // }
-    else {
-      return (
+    return (
+      <Router>
         <div className="App container">
-          <SearchPanel onSearchChange={this.onSearchChange} />
+          <Route
+            render={() => (
+              <SearchPanel
+                onSearchChange={this.onSearchChange}
+                onResetSearch={this.onResetSearch}
+              />
+            )}
+          />
+          <Route
+            path="/list"
+            render={() => (
+              <BooksList
+                list={this.state.itemsBooks}
+                onDetailsClick={this.onDetailsClick}
+              />
+            )}
+            exact
+          />
+          <Route
+            exact
+            path="/list/:id"
+            render={({ match }) => {
+              const { id } = match.params;
+              return (
+                <DetailBooksItem details={this.state.details} itemId={id} />
+              );
+            }}
+          />
         </div>
-      );
-    }
+      </Router>
+    );
   }
 }
 
