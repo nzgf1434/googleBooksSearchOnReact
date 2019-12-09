@@ -28,7 +28,9 @@ class SearchPanel extends React.Component {
     return (
       <Router>
         <div className="input-group container">
+          <label htmlFor="seaarchPanel">Google books search</label>
           <input
+            id="searchPanel"
             type="text"
             className="form-control search-input"
             placeholder="type to search"
@@ -44,13 +46,13 @@ class SearchPanel extends React.Component {
               className="btn btn-outline-primary"
               onClick={this.searchStart}
             >
-              Поиск
+              Search
             </button>
             <button
               className="btn btn-outline-primary"
               onClick={this.resetSearchResults}
             >
-              Сбросить
+              Reset
             </button>
           </div>
         </div>

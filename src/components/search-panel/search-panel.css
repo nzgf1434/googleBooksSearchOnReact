@@ -1,3 +1,19 @@
-.input-group{
+.input-group {
   margin-top: 20px;
+}
+
+.input-group input#searchPanel {
+  height: auto;
+  font-size: 20px;
+  border-top-left-radius: 15px;
+}
+
+.input-group label {
+  padding-top: 2px;
+  margin: 0 20px 0 0;
+  font-size: 26px;
+  line-height: 40px;
+  background: -webkit-linear-gradient(15deg, #1f74f5, #f2f51f 40%, #f51f1f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
