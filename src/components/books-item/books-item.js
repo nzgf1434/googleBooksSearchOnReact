@@ -1,25 +1,55 @@
-import React from 'react';
-import './books-item.css';
-import defaults from '../../defaultSettings';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from "react";
+import "./books-item.css";
+import defaults from "../../defaultSettings";
+import { withRouter } from "react-router-dom";
 
-export default function BooksItem(props) {
+const BooksItem = props => {
+  const {
+    defaultSmallThumbnail,
+    defaultTitle,
+    defaultAuthor,
+    defaultDate
+  } = defaults;
+  const {
+    title = defaultTitle,
+    author = defaultAuthor,
+    date = defaultDate,
+    picture = defaultSmallThumbnail,
+    itemId,
+    history,
+    onDetailsClick
+  } = props;
 
-    const {defaultSmallThumbnail, defaultTitle, defaultAuthor, defaultDate} = defaults;
-    const {title = defaultTitle, author = defaultAuthor, date = defaultDate, picture = defaultSmallThumbnail, onDetailsClick} = props;
-    return (
-        <Router>
-            <div className="item row align-items-center">
-                <div className="col-6">
-                    <p>Title: <span className="bold">{title}</span></p>
-                    <p>Author(s): <span className="bold">{author}</span></p>
-                    <p>Published date: <span className="bold">{date}</span></p>
-                </div>
-                <div className="col-4">
-                    <img src={picture} alt=" for book" className="smallThumbnail"/>
-                </div>
-                <div className="col-2"><Link to="/list" className="btn btn-primary" onClick={onDetailsClick}>...details</Link></div>
-            </div>
-        </Router>
-    )
-}
+  return (
+    <div className="item row align-items-center">
+      <div className="col-6">
+        <p>
+          Title: <span className="bold">{title}</span>
+        </p>
+        <p>
+          Author(s): <span className="bold">{author}</span>
+        </p>
+        <p>
+          Published date: <span className="bold">{date}</span>
+        </p>
+      </div>
+      <div className="col-4">
+        <img src={picture} alt=" for book" className="smallThumbnail" />
+      </div>
+      <div className="col-2">
+        <button
+          className="btn btn-primary"
+          onClick={e => {
+            e.preventDefault();
+            onDetailsClick(itemId);
+            history.push(`/list/${itemId}`);
+          }}
+        >
+          ...details
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default withRouter(BooksItem);
