@@ -2,6 +2,8 @@ import React from "react";
 import "./books-item.css";
 import defaults from "../../defaultSettings";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actionCreators from "../../store/actions/index";
 
 const BooksItem = props => {
   const {
@@ -16,8 +18,7 @@ const BooksItem = props => {
     date = defaultDate,
     picture = defaultSmallThumbnail,
     itemId,
-    history,
-    onDetailsClick
+    history
   } = props;
 
   return (
@@ -40,8 +41,7 @@ const BooksItem = props => {
         <button
           className="btn btn-primary"
           onClick={e => {
-            e.preventDefault();
-            onDetailsClick(itemId);
+            props.onItemClick(itemId);
             history.push(`/list/${itemId}`);
           }}
         >
@@ -52,4 +52,10 @@ const BooksItem = props => {
   );
 };
 
-export default withRouter(BooksItem);
+const mapDispatchToProps = dispatch => {
+  return {
+    onItemClick: id => dispatch(actionCreators.getItemId(id))
+  };
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(BooksItem));

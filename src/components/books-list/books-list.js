@@ -1,9 +1,12 @@
 import React from "react";
 import "./books-list.css";
 import BooksItem from "../books-item/";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+// import * as actionCreators from "../../store/actions/index";
 
 const BooksList = props => {
-  const { list, onDetailsClick } = props;
+  const { list } = props;
 
   if (list) {
     const elements = list.map(
@@ -19,7 +22,6 @@ const BooksList = props => {
               author={authors}
               date={publishedDate}
               picture={imageLinks.smallThumbnail}
-              onDetailsClick={onDetailsClick}
             />
           </li>
         );
@@ -27,7 +29,14 @@ const BooksList = props => {
     );
     return <ul>{elements}</ul>;
   } else {
-    return <ul></ul>;
+    return <h1>No data</h1>;
   }
 };
-export default BooksList;
+
+const mapStateToProps = state => {
+  return {
+    list: state.itemsBooks
+  };
+};
+
+export default connect(mapStateToProps, null)(withRouter(BooksList));

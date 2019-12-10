@@ -1,12 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/app';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./components/app";
+import { Provider } from "react-redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import listReducer from "./store/reducers/listReducer";
+import itemReducer from "./store/reducers/itemReducer";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const rootReducer = combineReducers({
+  list: listReducer,
+  item: itemReducer
+});
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
+console.log(store.getState());
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
