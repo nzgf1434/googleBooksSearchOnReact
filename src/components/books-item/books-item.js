@@ -41,8 +41,8 @@ const BooksItem = props => {
         <button
           className="btn btn-primary"
           onClick={e => {
-            props.onItemClick(itemId);
-            history.push(`/list/${itemId}`);
+            // props.onItemClick(itemId);
+            history.push(`/${itemId}`);
           }}
         >
           ...details

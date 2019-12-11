@@ -10,17 +10,19 @@ export const setSearchWord = res => {
 
 export const resetSearchWord = () => {
   return {
-    type: actionTypes.SEARCH_WORD
+    type: actionTypes.CLEAN_SEARCH
   };
 };
 
-export const getBooksList = () => {
+export const getBooksList = text => {
   return (dispatch, getState) => {
-    googleBooksGetListService(getState().searchText).then(res => {
-      dispatch({
-        type: actionTypes.GET_LIST,
-        payload: res.items
+    if (!!text){
+      googleBooksGetListService(text).then(res => {
+        dispatch({
+          type: actionTypes.GET_LIST,
+          payload: res.items
+        });
       });
-    });
-  };
+    }
+  }  
 };

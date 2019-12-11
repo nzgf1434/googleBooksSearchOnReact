@@ -12,9 +12,9 @@ const rootReducer = combineReducers({
   list: listReducer,
   item: itemReducer
 });
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
-console.log(store.getState());
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>

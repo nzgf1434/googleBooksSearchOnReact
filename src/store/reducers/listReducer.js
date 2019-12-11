@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SEARCH_WORD:
       return mergeState(state, { searchText: action.payload });
     case actionTypes.CLEAN_SEARCH:
-      return mergeState(state, { searchText: "" });
+      return mergeState(state, { searchText: "", itemsBooks: null });
   }
   return state;
 };
