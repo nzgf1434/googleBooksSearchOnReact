@@ -2,7 +2,7 @@ import React from "react";
 import "./books-item.css";
 import defaults from "../../defaultSettings";
 import { withRouter } from "react-router-dom";
-
+// todo: review В первую очередь, перед MobX Надо будет все перевести на TypeScript
 const BooksItem = props => {
   const {
     defaultSmallThumbnail,
@@ -17,6 +17,7 @@ const BooksItem = props => {
     picture = defaultSmallThumbnail,
     itemId,
     history,
+    // todo: review не нравится название
     setClickedBookId
   } = props;
 
@@ -39,6 +40,7 @@ const BooksItem = props => {
       <div className="col-2">
         <button
           className="btn btn-primary"
+          // todo: review на каждый рендер новая ф-я
           onClick={e => {
             setClickedBookId(itemId);
             history.push(`/${itemId}`);

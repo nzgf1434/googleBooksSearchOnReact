@@ -15,15 +15,20 @@ const SearchPanel = props => {
         className="form-control search-input"
         placeholder={"type to search"}
         value={textForSearch}
+        // todo: review обработчик вынести
         onChange={e => {
           setSearchString(e.target.value);
         }}
+        // todo: review обработчик вынести
         onFocus={() => {
           setColorize(true);
         }}
+        // todo: review обработчик вынести
         onBlur={() => {
           setColorize(false);
         }}
+        // todo: review обработчик вынести
+        // todo: чтобы такой велосипед не писать юзай форму, у нее onSubmit есть
         onKeyPress={e => {
           if (e.key === "Enter") {
             searchStart(textForSearch);
@@ -34,6 +39,7 @@ const SearchPanel = props => {
       <div className="input-group-append">
         <button
           className="btn btn-outline-primary"
+          // todo: review обработчик вынести
           onClick={() => {
             searchStart(textForSearch);
             props.history.push("/");
@@ -41,6 +47,7 @@ const SearchPanel = props => {
         >
           Search
         </button>
+        // todo: review обработчик вынести - обернуть resetSearch в обработчик
         <button className="btn btn-outline-primary" onClick={resetSearch}>
           Reset
         </button>

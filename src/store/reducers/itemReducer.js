@@ -1,7 +1,7 @@
 /* eslint-disable default-case */
 import * as actionTypes from "../actions/actionTypes";
 import mergeState from "../utilities/mergeState";
-
+// todo: review must-have заюзать https://github.com/redux-utilities/redux-actions#usage и написать в ducks стиле
 const initialState = {
   details: null,
   itemId: ""

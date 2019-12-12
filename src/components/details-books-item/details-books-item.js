@@ -31,8 +31,10 @@ export default function DetailsBooksItem(props) {
     <div className="card">
       <img src={thumbnail} alt="for book" />
       <div className="card-body">
+      // todo: review С - Семантика (https://webref.ru/course/html-basics/semantics)
         <h2 className="card-title">{title}</h2>
         <h5 className="card-subtitle mb-2 text-muted">Author(s): {authors}</h5>
+        // todo: review class-text - когда закончилась фантазия
         <h5 className="class-text">Pablished: {publishedDate}</h5>
         <h5 className="class-text">Publisher: {publisher}</h5>
         <h5 className="class-text">Pages: {pageCount}</h5>

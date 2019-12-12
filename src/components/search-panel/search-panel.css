@@ -1,7 +1,7 @@
 .input-group {
   margin-top: 20px;
 }
-
+// todo: review Зачем id?
 .input-group input#searchPanel {
   height: auto;
   font-size: 20px;

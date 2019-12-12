@@ -7,6 +7,7 @@ import * as actionCreators from "../../store/actions/index";
 class BookPage extends Component {
   componentDidMount() {
     const { bookId } = this.props;
+    // todo: review: const { bookId, getBookData } = this.props;
     this.props.getBookData(bookId);
   }
 
@@ -15,6 +16,7 @@ class BookPage extends Component {
     return !!bookInfo ? (
       <div className="book-page">
         <SearchPanel
+        // todo: review деструктуризация
           searchStart={this.props.onSearchStart}
           setSearchString={this.props.onSetSearch}
           resetSearch={this.props.onResetSearch}
@@ -37,6 +39,7 @@ class BookPage extends Component {
 
 const mapStateToProps = state => {
   return {
+    // todo: review деструктуризация
     textForSearch: state.list.searchText,
     bookInfo: state.item.details,
     bookId: state.item.itemId
@@ -44,6 +47,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
+  // todo: review велосипед
+  /**
+   * {
+   *    export default connect(mapStateToProps, { ...actionCreators })(BookPage);
+   * }
+   */
   return {
     onResetSearch: () => dispatch(actionCreators.resetSearchWord()),
     onSetSearch: text => dispatch(actionCreators.setSearchWord(text)),

@@ -14,6 +14,13 @@ class MainPage extends Component {
       textForSearch,
       setClickedBookId
     } = this.props;
+    
+    // todo: review лол
+    
+    /**
+     * { !!list && (<BooksList list={list} setClickedBookId={setClickedBookId} />) }
+     */
+    
     return !!list ? (
       <div className="main-page">
         <SearchPanel
@@ -43,7 +50,7 @@ const mapStateToProps = state => {
     list: state.list.itemsBooks
   };
 };
-
+// todo: review велосипед
 const mapDispatchToProps = dispatch => {
   return {
     onResetSearch: () => dispatch(actionCreators.resetSearchWord()),
