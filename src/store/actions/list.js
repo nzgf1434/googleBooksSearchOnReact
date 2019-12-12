@@ -16,7 +16,7 @@ export const resetSearchWord = () => {
 
 export const getBooksList = text => {
   return (dispatch, getState) => {
-    if (!!text){
+    if (!!text) {
       googleBooksGetListService(text).then(res => {
         dispatch({
           type: actionTypes.GET_LIST,
@@ -24,5 +24,5 @@ export const getBooksList = text => {
         });
       });
     }
-  }  
+  };
 };

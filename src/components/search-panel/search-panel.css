@@ -13,7 +13,11 @@
   margin: 0 20px 0 0;
   font-size: 26px;
   line-height: 40px;
-  background: -webkit-linear-gradient(15deg, #1f74f5, #f2f51f 40%, #f51f1f);
+  color: #007bff;
+}
+
+.input-group.colorize label {
+  background: linear-gradient(25deg, #1f74f5, #f2f51f 60%, #f51f1f 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

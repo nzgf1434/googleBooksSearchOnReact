@@ -1,23 +1,28 @@
-
 /* .item img{
     width: 30%;
 } */
 
-li{
-    list-style-type: none;
+li {
+  list-style-type: none;
 }
 
-.row{
-    margin: 10px 0;
-    border: 1px solid rgb(75, 155, 253);
-    border-radius: 3px;
-    padding: 10px 0;
+.row {
+  margin: 10px 0;
+  border: 1px solid rgba(75, 155, 253, 0.4);
+  border-radius: 3px;
+  padding: 10px 0;
 }
-.bold{
-    font-weight: 600;
-    font-size: 17px;
-    padding-left: 10px;
+
+.row:hover {
+  box-shadow: 1px 4px 5px rgba(75, 155, 253, 0.25);
 }
-.smallThumbnail{
-    max-width: 128px;
+
+.bold {
+  font-weight: 600;
+  font-size: 17px;
+  padding-left: 10px;
+}
+
+.smallThumbnail {
+  max-width: 128px;
 }

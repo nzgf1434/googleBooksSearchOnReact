@@ -9,12 +9,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_ITEM: {
-      return initialState;
-    }
-    case actionTypes.GET_ITEM_ID: {
+    case actionTypes.GET_ITEM:
+      return mergeState(state, { details: action.payload });
+    case actionTypes.GET_ITEM_ID:
       return mergeState(state, { itemId: action.payload });
-    }
   }
   return state;
 };

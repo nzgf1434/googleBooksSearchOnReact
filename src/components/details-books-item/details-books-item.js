@@ -3,6 +3,7 @@ import "./details-books-item.css";
 import defaults from "../../defaultSettings";
 
 export default function DetailsBooksItem(props) {
+  console.log(props);
   const {
     defaultThumbnail,
     defaultTitle,
@@ -35,7 +36,7 @@ export default function DetailsBooksItem(props) {
         <h5 className="class-text">Pablished: {publishedDate}</h5>
         <h5 className="class-text">Publisher: {publisher}</h5>
         <h5 className="class-text">Pages: {pageCount}</h5>
-        <p className="class-text">Description: {description}</p>
+        <div className="class-text">Description: {description}</div>
       </div>
     </div>
   );

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import "./app.css";
 import MainPage from "../../containers/main-page/main-page";
-import DetailBooksItem from "../details-books-item";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import BookPage from "../../containers/book-page/book-page";
 
 class App extends Component {
-
   render() {
     return (
       <Router>
@@ -15,12 +14,10 @@ class App extends Component {
             path="/:id"
             render={({ match }) => {
               const { id } = match.params;
-              return <DetailBooksItem itemId={id} />;
+              return <BookPage itemId={id} />;
             }}
           />
-          <Route 
-          path="/"
-          component={MainPage} />
+          <Route exact path="/" component={MainPage} />
         </div>
       </Router>
     );
