@@ -6,8 +6,8 @@ import * as actionCreators from "../../store/actions/index";
 
 class BookPage extends Component {
   componentDidMount() {
-    const { bookId } = this.props;
-    this.props.getBookData(bookId);
+    const { bookId, getBookData } = this.props;
+    getBookData(bookId);
   }
 
   render() {

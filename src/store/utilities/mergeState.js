@@ -1,8 +1,8 @@
-const mergeState = (oldObject, updatedValues) => {
-  return {
-    ...oldObject,
-    ...updatedValues
-  };
-};
+// const mergeState = (oldObject, updatedValues) => {
+//   return {
+//     ...oldObject,
+//     ...updatedValues
+//   };
+// };
 
-export default mergeState;
+// export default mergeState;

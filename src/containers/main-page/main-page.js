@@ -14,6 +14,7 @@ class MainPage extends Component {
       textForSearch,
       setClickedBookId
     } = this.props;
+
     return !!list ? (
       <div className="main-page">
         <SearchPanel
