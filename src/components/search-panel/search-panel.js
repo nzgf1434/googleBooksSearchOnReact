@@ -28,11 +28,13 @@ const SearchPanel = props => {
 
   return (
     <div className={`input-group container ${colorize ? "colorize" : ""}`}>
-      <label htmlFor="searchPanel">Google books search</label>
+      <label htmlFor="searchPanel" className="input-group__google-text">
+        Google books search
+      </label>
       <input
         id="searchPanel"
         type="text"
-        className="form-control search-input"
+        className="form-control input-group__search-input"
         placeholder={"type to search"}
         value={textForSearch}
         onChange={inputChangeHandler}
