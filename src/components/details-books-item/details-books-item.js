@@ -1,9 +1,8 @@
 import React from "react";
-import "./details-books-item.css";
+import classes from "./details-books-item.module.css";
 import defaults from "../../defaultSettings";
 
 export default function DetailsBooksItem(props) {
-  console.log(props);
   const {
     defaultThumbnail,
     defaultTitle,
@@ -27,16 +26,31 @@ export default function DetailsBooksItem(props) {
     }
   } = props;
 
+  const parseHtml = () => {
+    return { __html: description };
+  };
+
   return (
-    <div className="card">
-      <img src={thumbnail} alt="for book" />
-      <div className="card-body">
-        <h2 className="card-title">{title}</h2>
-        <h5 className="card-subtitle mb-2 text-muted">Author(s): {authors}</h5>
-        <h5 className="class-text">Pablished: {publishedDate}</h5>
-        <h5 className="class-text">Publisher: {publisher}</h5>
-        <h5 className="class-text">Pages: {pageCount}</h5>
-        <div className="class-text">Description: {description}</div>
+    <div className={`container ${classes.card}`}>
+      <div className="row align-items-center">
+        <div className={`col-sm-4 ${classes["img-block"]}`}>
+          <img className={classes.img} src={thumbnail} alt="for book" />
+        </div>
+        <div className="col-sm-8">
+          <h1 className={classes["card-title"]}>{title}</h1>
+          <h2 className="card-subtitle mb-2 text-muted">
+            Author(s): {authors}
+          </h2>
+          <h2 className="class-text">Pablished: {publishedDate}</h2>
+          <h2 className="class-text">Publisher: {publisher}</h2>
+          <h2 className="class-text">Pages: {pageCount}</h2>
+        </div>
+      </div>
+      <div className="row">
+        <div
+          className={`col-sm-12 ${classes.description}`}
+          dangerouslySetInnerHTML={parseHtml()}
+        ></div>
       </div>
     </div>
   );

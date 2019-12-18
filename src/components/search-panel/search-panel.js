@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./search-panel.css";
+import classes from "./search-panel.module.css";
 import { withRouter } from "react-router-dom";
 
 const SearchPanel = props => {
@@ -27,14 +27,19 @@ const SearchPanel = props => {
   const blurHandler = () => setColorize(false);
 
   return (
-    <div className={`input-group container ${colorize ? "colorize" : ""}`}>
-      <label htmlFor="searchPanel" className="input-group__google-text">
+    <div className={`${classes["input-group-margin"]} input-group container`}>
+      <label
+        htmlFor="searchPanel"
+        className={`${classes["label-text"]} ${
+          colorize ? classes.colorize : ""
+        }`}
+      >
         Google books search
       </label>
       <input
         id="searchPanel"
         type="text"
-        className="form-control input-group__search-input"
+        className={`form-control ${classes.searchPanel}`}
         placeholder={"type to search"}
         value={textForSearch}
         onChange={inputChangeHandler}
